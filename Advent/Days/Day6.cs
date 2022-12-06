@@ -11,13 +11,28 @@ namespace Advent.Days
     {
         public string Part1(string[] items)
         {
-            string returnValue = null;
-            return returnValue;
+            string message = items[0];
+            return UniqueMessagePosition(message, 4).ToString();
         }
 
         public string Part2(string[] items)
         {
-            string returnValue = null;
+            string message = items[0];
+            return UniqueMessagePosition(message, 14).ToString();
+        }
+
+        private int UniqueMessagePosition(string message, int messageSize)
+        {
+            int returnValue = 0; ;
+            for (int i = messageSize; i <= message.Length; i++)
+            {
+                var candidate = message[(i - messageSize)..(i)].Distinct();
+                if (candidate.Count() == messageSize)
+                {
+                    returnValue = i;
+                    break;
+                }
+            }
             return returnValue;
         }
     }
